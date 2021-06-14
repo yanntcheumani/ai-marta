@@ -1,3 +1,4 @@
+numpy==1.20.3
 absl-py==0.12.0
 astunparse==1.6.3
 cachetools==4.2.2
@@ -15,7 +16,6 @@ Keras==2.4.3
 keras-nightly==2.5.0.dev2021032900
 Keras-Preprocessing==1.1.2
 Markdown==3.3.4
-numpy==1.20.3
 oauthlib==3.1.1
 opt-einsum==3.3.0
 protobuf==3.17.3
