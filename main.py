@@ -1,9 +1,11 @@
 from keras.datasets import mnist
 from keras.utils import np_utils
 from Layer.ActivationLayer import ActivationLayer
-from Activation.activation_method import *
+from Activation import AllActivation
 from Network import Network
 from Layer.FCLayer import FCLayer
+import numpy as np
+
 
 # loss function and its derivative
 def mse(y_true, y_pred):
@@ -35,18 +37,15 @@ y_test = np_utils.to_categorical(y_test)
 # Network
 net = Network()
 net.add(FCLayer(28*28, 100))                # input_shape=(1, 28*28)    ;   output_shape=(1, 100)
-net.add(ActivationLayer(tanh, tanh_prime))
-net.add(FCLayer(100, 10))                   # input_shape=(1, 100)      ;   output_shape=(1, 50)
-net.add(ActivationLayer(tanh, tanh_prime))
-# net.add(FCLayer(50, 30))                    # input_shape=(1, 50)       ;   output_shape=(1, 10)
-# net.add(ActivationLayer(tanh, tanh_prime))
-# net.add(FCLayer(30, 10))                    # input_shape=(1, 50)       ;   output_shape=(1, 10)
-# net.add(ActivationLayer(tanh, tanh_prime))
+net.add(ActivationLayer(AllActivation.TANH))
+net.add(FCLayer(100, 50))                   # input_shape=(1, 100)      ;   output_shape=(1, 50)
+net.add(ActivationLayer(AllActivation.TANH))
+net.add(FCLayer(50, 10))                    # input_shape=(1, 50)       ;   output_shape=(1, 10)
+net.add(ActivationLayer(AllActivation.TANH))
 
-# train on 1000 samples
 # as we didn't implemented mini-batch GD, training will be pretty slow if we update at each iteration on 60000 samples...
 net.use(mse, mse_prime)
-net.fit(x_train[0:900], y_train[0:900], epochs=50, learning_rate=0.1)
+net.fit(x_train[0:900], y_train[0:900], epochs=100, learning_rate=0.1)
 
 # test on 3 samples
 out = net.predict(x_test[0:3])
