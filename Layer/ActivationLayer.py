@@ -1,10 +1,12 @@
 from Layer import Layer
 
+
 # inherit from base class Layer
 class ActivationLayer(Layer):
-    def __init__(self, activation, activation_prime):
-        self.activation = activation
-        self.activation_prime = activation_prime
+    def __init__(self, activation):
+        super().__init__()
+        self.activation = self.all_activation[0][0]
+        self.activation_prime = self.all_activation[0][1]
 
     # returns the activated input
     def forward_propagation(self, input_data):
