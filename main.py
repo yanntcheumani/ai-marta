@@ -42,6 +42,8 @@ net.add(FCLayer(100, 50))                   # input_shape=(1, 100)      ;   outp
 net.add(ActivationLayer(AllActivation.TANH))
 net.add(FCLayer(50, 10))                    # input_shape=(1, 50)       ;   output_shape=(1, 10)
 net.add(ActivationLayer(AllActivation.TANH))
+net.add(FCLayer(10, 10))
+net.add(ActivationLayer(AllActivation.TANH))
 
 # as we didn't implemented mini-batch GD, training will be pretty slow if we update at each iteration on 60000 samples...
 net.use(mse, mse_prime)
